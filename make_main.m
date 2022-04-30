@@ -1,0 +1,16 @@
+fe=44100;
+temps=1;
+freq=880;
+[sig2,fe1]=audioread("Motis_musique_cut.wav");
+sig1=sig2(:,1)';
+chroma=make_chromagramme(sig1,fe1,100);
+Auto=make_auto(chroma);
+mfcc=make_mfcc_gramme(sig1,fe1,40);
+Auto2=make_auto(mfcc);
+image(Auto,'CDataMapping','scaled');
+colorbar
+colormap("gray")
+figure()
+image(Auto2,'CDataMapping','scaled');
+colorbar
+colormap("gray")
