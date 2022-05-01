@@ -13,14 +13,14 @@ gamme(1,1)=((ecart-1)/ecart)*fo;%ecart permet de définir la largeur du filtre. 
 gamme(1,2)=fo;% cette ligne correspond à la fréquence centrale du filtre
 gamme(1,3)=((ecart+1)/ecart)*fo; %cette ligne correspond à la fréquence haute
 for j=5:3:36
-    gamme(1,j-1)=gamme(1,j-4)*nthroot(2,12);
     gamme(1,j)=gamme(1,j-3)*nthroot(2,12); %on applique le schéma précédant à toute les fréquences 'musicales'(gammes tempérées) jusqu'à environ fe/2.
-    gamme(1,j+1)=gamme(1,j-2)*nthroot(2,12);
+    gamme(1,j+1)=gamme(1,j)*((ecart+1)/ecart);
+    gamme(1,j-1)=gamme(1,j)*((ecart-1)/ecart);
 end
 for i=2:h
     gamme(i,:)=gamme(i-1,:)*2;
 end
-gamme=floor(gamme);
+gamme=round(gamme);
 for i=1:12
     for k=1:h
         fil=make_filtre_triangu(gamme(k,(i-1)*3+1),gamme(k,(i-1)*3+2),gamme(k,(i-1)*3+3),fe); %on calcule ici le filtre correspondant aux truples fréquentiels donné
