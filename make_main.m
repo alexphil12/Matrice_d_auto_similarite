@@ -1,5 +1,5 @@
 clear
-[sig2,fe1]=audioread("Motis_musique_cut.wav");
+[sig2,fe1]=audioread("Motis_musique_cut.mp3");
 sig1=sig2(:,1)';
 chroma=make_chromagramme(sig1,fe1,1000);
 Auto=make_auto(chroma);
